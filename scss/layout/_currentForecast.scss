@@ -1,0 +1,109 @@
+.currentForecast {
+  .currentForecast__location {
+    font-size: 1.5rem;
+    font-weight: normal;
+    text-align: center;
+    margin-bottom: 0.25rem;
+    @include mq(768px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .currentForecast__conditions {
+    width: 100%;
+    font-size: 1rem;
+    margin: auto auto 2rem;
+    display: grid;
+    @include mq(375px) {
+      font-size: 1.1rem;
+    }
+    @include mq(400px) {
+      font-size: 1.3rem;
+    }
+
+    .icon {
+      @include flexCenter;
+      grid-row: 1 / span 1;
+      grid-column: 1 / span 4;
+
+      img {
+        width: 40%;
+        @include mq(768px) {
+          width: 50%;
+        }
+      }
+    }
+
+    .desc {
+      @include flexCenter;
+      grid-row: 2 / span 1;
+      grid-column: 1 / span 4;
+      padding-bottom: 2rem;
+    }
+
+    .temp {
+      @include flexCenter;
+      grid-row: 3 / span 1;
+      grid-column: 1 / span 4;
+      font-size: 1.5rem;
+      letter-spacing: 0;
+      text-shadow: 1px 0 5px $text-shadow-color;
+      @include mq(360px) {
+        font-size: 3rem;
+      }
+      @include mq(768px) {
+        font-size: 4rem;
+      }
+    }
+
+    .maxTemp {
+      @include flexCenter;
+      grid-row: 4 / span 1;
+      grid-column: 2 / span 1;
+      font-size: 0.9rem;
+    }
+
+    .minTemp {
+      @include flexCenter;
+      grid-row: 4 / span 1;
+      grid-column: 3 / span 1;
+      font-size: 0.9rem;
+    }
+
+    .feels {
+      @include flexCenter;
+      grid-row: 5 / span 1;
+      grid-column: 1 / span 4;
+      font-weight: normal;
+      padding-top: 2rem;
+    }
+
+    .humidity {
+      @include flexCenter;
+      grid-row: 6 / span 1;
+      grid-column: 1 / span 4;
+      padding-top: 0.5rem;
+      font-weight: normal;
+      @include mqMaxWMinH(1024px, 700px) {
+        @include flexCenter;
+      }
+      @include mqh(1080px) {
+        @include flexCenter;
+      }
+    }
+
+    .wind {
+      @include flexCenter;
+      grid-row: 7 / span 1;
+      grid-column: 1 / span 4;
+      padding-top: 0.5rem;
+      font-weight: normal;
+      @include mqMaxWMinH(1024px, 700px) {
+        @include flexCenter;
+      }
+      @include mqh(1080px) {
+        @include flexCenter;
+      }
+    }
+  }
+}

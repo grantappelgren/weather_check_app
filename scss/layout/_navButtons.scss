@@ -1,0 +1,12 @@
+.navButtons {
+  flex-grow: 1;
+  @include flexCenter;
+  justify-content: space-evenly;
+  padding: 0.5rem 0.25rem;
+  width: 100%;
+  margin-top: 1.75rem;
+}
+
+.noBorder {
+  border: none;
+}
