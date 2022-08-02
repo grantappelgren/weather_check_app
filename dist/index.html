@@ -4,23 +4,150 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weather Check App - Welcome</title>
+    <title>Weather Check App</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/main.min.css" />
     <script src="js/main.js" type="module"></script>
-    <script>
-      const redirectPage = () => {
-        window.location = "http://127.0.0.1:5500/dist/home.html";
-      };
-      setTimeout("redirectPage()", 1500);
-    </script>
   </head>
   <body>
-    <div class="splash">
-      <img
-        src="img/splashcontent.png"
-        alt="Application Name and Source"
-        class="splashContent"
-      />
-    </div>
+    <main class="fade-in">
+      <h1 class="offscreen">
+        Weather Check App Powered by the Open Weather A P I
+      </h1>
+
+      <section id="searchBar" class="searchBar fade-in">
+        <form id="searchBar__form" class="searchBar__form" role="search">
+          <label for="searchBar__text" class="offscreen"
+            >Enter a new location</label
+          >
+          <input
+            id="searchBar__text"
+            class="searchBar__text"
+            type="text"
+            role="searchbox"
+            size="40"
+            autocomplete="off"
+            placeholder="City, State, Country"
+          />
+          <button
+            id="searchBar__button"
+            class="searchBar__button button"
+            title="Submit Location"
+            aria-label="Submit Search"
+          >
+            <i class="fa fa-search"></i>
+            <i class="fas fa-sync fa-spin none"></i>
+          </button>
+        </form>
+      </section>
+
+      <!-- This is a skip link that helps anyone with a screen reader skip from section-to-section without having to navigate through that section -->
+      <a href="#currentForecast" class="skip-link"
+        >Skip to Current Conditions</a
+      >
+
+      <section
+        id="currentForecast"
+        class="currentForecast fade-in"
+        role="region"
+        aria-labelledby="currentForecast__location"
+      >
+        <h2 id="currentForecast__location" class="currentForecast__location">
+          Current Conditions
+        </h2>
+
+        <div
+          id="currentForecast__conditions"
+          class="currentForecast__conditions"
+        ></div>
+      </section>
+
+      <a href="#dailyForecast" class="skip-link">Skip to Six Day Forecast</a>
+
+      <hr class="fade-in" />
+
+      <section
+        id="dailyForecast"
+        class="dailyForecast fade-in"
+        role="region"
+        aria-labelledby="dailyForecast__title"
+      >
+        <h2 id="dailyForecast__title" class="dailyForecast__title offscreen">
+          Six Day Forecast
+        </h2>
+        <div id="dailyForecast__contents" class="dailyForecast__contents"></div>
+      </section>
+
+      <p id="confirmation" class="offscreen" aria-live="assertive"></p>
+
+      <div class="measurementButton">
+        <button
+          id="unit"
+          class="toggleButton"
+          title="Toggle Measurement Units"
+          aria-label="Toggle between metric and imperial measurement units"
+        >
+          <p class="degreeUnit">F / C°</p>
+          <i class="fas fa-sync fa-spin none"></i>
+        </button>
+      </div>
+    </main>
+
+    <nav id="navButtons" class="navButtons fade-in">
+      <button
+        id="getLocation"
+        class="noBorder button"
+        title="Get Location"
+        aria-label="Get the current weather conditions for your current location"
+      >
+        <i class="fas fa-map-marker-alt fa-lg"></i>
+        <i class="fas fa-sync fa-spin none"></i>
+      </button>
+      <button
+        id="home"
+        class="noBorder button"
+        title="Home Weather"
+        aria-label="Get the current weather conditions for your home location"
+      >
+        <i class="fas fa-home fa-lg"></i>
+        <i class="fas fa-sync fa-spin none"></i>
+      </button>
+      <button
+        id="saveLocation"
+        class="noBorder button"
+        title="Save Location"
+        aria-label="Save the current location as your home location"
+      >
+        <i class="fas fa-save fa-lg"></i>
+        <i class="fas fa-sync fa-spin none"></i>
+      </button>
+      <button
+        id="refresh"
+        class="noBorder button"
+        title="Refresh Weather"
+        aria-label="Refresh the current weather conditions"
+      >
+        <i class="fas fa-sync-alt fa-lg"></i>
+        <i class="fas fa-sync fa-spin none"></i>
+      </button>
+    </nav>
   </body>
 </html>
