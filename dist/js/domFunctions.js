@@ -35,6 +35,7 @@ const toProperCase = (text) => {
 
 const updateWeatherLocationHeader = (message) => {
   const h1 = document.getElementById("currentForecast__location");
+  // !== -1 means it does exist
   if (message.indexOf("Lat:") !== -1 && message.indexOf("Long:") !== -1) {
     const msgArray = message.split(" ");
     const mapArray = msgArray.map((msg) => {
@@ -58,6 +59,7 @@ export const updateScreenReaderConfirmation = (message) => {
   document.getElementById("confirmation").textContent = message;
 };
 
+// Used to update Current Conditions and Daily Forecast data
 export const updateDisplay = (weatherJson, locationObj) => {
   fadeDisplay();
   clearDisplay();
@@ -106,6 +108,7 @@ const deleteContents = (parentElement) => {
   }
 };
 
+// Used to translate a weather code from the API to an actual kind of weather that can be displayed in the app
 const getWeatherClass = (icon) => {
   const firstThreeChars = icon.slice(0, 3);
   const weatherLookup = {
@@ -133,6 +136,7 @@ const getWeatherClass = (icon) => {
   return weatherClass;
 };
 
+// Used to change the background image to match the kind of weather
 const setBGImage = (weatherClass) => {
   document.documentElement.classList.add(weatherClass);
   document.documentElement.classList.forEach((img) => {
@@ -149,10 +153,12 @@ const buildScreenReaderWeather = (weatherJson, locationObj) => {
   )}°${tempUnit} in ${location}`;
 };
 
+// After the weather displays, it will be ready to receive more input immediately into the search bar if needed
 const setFocusOnSearch = () => {
   document.getElementById("searchBar__text").focus();
 };
 
+// Used to populate the Current Conditions section
 const createCurrentConditionsDivs = (weatherObj, unit) => {
   const windUnit = unit === "imperial" ? "mph" : "m/s";
   const icon = createMainImgDiv(
@@ -194,6 +200,7 @@ const createCurrentConditionsDivs = (weatherObj, unit) => {
   return [icon, desc, temp, maxTemp, minTemp, feels, wind, humidity];
 };
 
+// Used to populate the Current Conditions section with icon
 const createMainImgDiv = (icon, altText) => {
   const iconDiv = createElem("div", "icon");
   iconDiv.id = "icon";
@@ -204,6 +211,7 @@ const createMainImgDiv = (icon, altText) => {
   return iconDiv;
 };
 
+// Used to create elements that populate divs within the display
 const createElem = (elemType, divClassName, divText, unit) => {
   const div = document.createElement(elemType);
   div.className = divClassName;
@@ -219,6 +227,7 @@ const createElem = (elemType, divClassName, divText, unit) => {
   return div;
 };
 
+// Used to translate API icon codes to my icons
 const translateIconToMyIcon = (icon) => {
   const img = document.createElement("img");
   const firstTwoChars = icon.slice(0, 2);
@@ -270,6 +279,7 @@ const translateIconToMyIcon = (icon) => {
   return img;
 };
 
+// Used to display Current Conditions elements
 const displayCurrentConditions = (currentConditionsArray) => {
   const ccContainer = document.getElementById("currentForecast__conditions");
   currentConditionsArray.forEach((cc) => {
@@ -277,6 +287,7 @@ const displayCurrentConditions = (currentConditionsArray) => {
   });
 };
 
+// Used to gather data for Six Day Forecast
 const displaySixDayForecast = (weatherJson) => {
   for (let i = 1; i <= 6; i++) {
     const dfArray = createDailyForecastDivs(weatherJson.daily[i]);
@@ -284,6 +295,7 @@ const displaySixDayForecast = (weatherJson) => {
   }
 };
 
+// Used to populate the Six Day Forecast section
 const createDailyForecastDivs = (dayWeather) => {
   const dayAbbreviationText = getDayAbbreviation(dayWeather.dt);
   const dayAbbreviation = createElem(
@@ -308,12 +320,14 @@ const createDailyForecastDivs = (dayWeather) => {
   return [dayAbbreviation, dayIcon, dayHigh, dayLow];
 };
 
+// Used to get 3-letter abbreviation for days (SAT, SUN, etc.)
 const getDayAbbreviation = (data) => {
   const dateObj = new Date(data * 1000);
   const utcString = dateObj.toUTCString();
   return utcString.slice(0, 3).toUpperCase();
 };
 
+// Used to populate the Six Day Forecast section with icons
 const createDailyForecastIcon = (icon, altText) => {
   const img = document.createElement("img");
   if (window.innerWidth < 768 || window.innerHeight < 1025) {
@@ -368,6 +382,7 @@ const createDailyForecastIcon = (icon, altText) => {
   }
 };
 
+// Used to display Six Day Forecast elements
 const displayDailyForecast = (dfArray) => {
   const dayDiv = createElem("div", "forecastDay");
   dfArray.forEach((el) => {

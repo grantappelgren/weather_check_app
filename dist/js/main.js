@@ -13,6 +13,8 @@ import {
   updateScreenReaderConfirmation,
   updateDisplay,
 } from "./domFunctions.js";
+
+// Current state of the application
 import CurrentLocation from "./CurrentLocation.js";
 const currentLoc = new CurrentLocation();
 
@@ -38,6 +40,7 @@ const initApp = () => {
 
 document.addEventListener("DOMContentLoaded", initApp);
 
+// Result of clicking geoButton
 const getGeoWeather = (event) => {
   if (event) {
     if (event.type === "click") {
@@ -64,6 +67,7 @@ const geoSuccess = (position) => {
   updateDataAndDisplay(currentLoc);
 };
 
+// Results of clicking/not clicking homeButton and having/not having a saved location
 const loadWeather = (event) => {
   const savedLocation = getHomeLocation();
   if (!savedLocation && !event) return getGeoWeather;
@@ -95,6 +99,7 @@ const displayHomeLocationWeather = (home) => {
   }
 };
 
+// Result of clicking saveButton
 const saveLocation = () => {
   if (currentLoc.getLat() && currentLoc.getLon()) {
     const saveIcon = document.querySelector(".fa-save");
@@ -112,6 +117,7 @@ const saveLocation = () => {
   }
 };
 
+// Result of clicking unitButton
 const setUnitPref = () => {
   const unitIcon = document.querySelector(".degreeUnit");
   addSpinner(unitIcon);
@@ -119,12 +125,14 @@ const setUnitPref = () => {
   updateDataAndDisplay(currentLoc);
 };
 
+// Result of clicking refreshButton
 const refreshWeather = () => {
   const refreshIcon = document.querySelector(".fa-sync-alt");
   addSpinner(refreshIcon);
   updateDataAndDisplay(currentLoc);
 };
 
+// Result of submitting a location entry into the search bar
 const submitNewLocation = async (event) => {
   event.preventDefault();
   const form = document.getElementById("searchBar__form");
@@ -154,6 +162,7 @@ const submitNewLocation = async (event) => {
   form.reset();
 };
 
+// Essentially the router/controller of the application
 const updateDataAndDisplay = async (locationObj) => {
   const weatherJson = await getWeatherFromCoords(locationObj);
   if (weatherJson) updateDisplay(weatherJson, locationObj);
