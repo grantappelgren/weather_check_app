@@ -127,6 +127,7 @@ const refreshWeather = () => {
 
 const submitNewLocation = async (event) => {
   event.preventDefault();
+  const form = document.getElementById("searchBar__form");
   const text = document.getElementById("searchBar__text").value;
   const entryText = cleanText(text);
   if (!entryText.length) return;
@@ -150,6 +151,7 @@ const submitNewLocation = async (event) => {
   } else {
     displayError("Connection Error", "Connection Error");
   }
+  form.reset();
 };
 
 const updateDataAndDisplay = async (locationObj) => {
